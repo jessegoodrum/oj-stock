@@ -4,10 +4,8 @@ import React from 'react';
 import { ProductsContext} from '../../contexts/oj.context';
 import { addCollectionAndDocuments } from '../../firebase-utils/firebase.utils';
 import OjCard from '../ojCard/ojCard.component';
-import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import Alert from 'react-bootstrap/Alert';
-import { Row,Col } from 'react-bootstrap';
+import { Row,Col,Toast,ToastContainer } from 'react-bootstrap';
 
 
 export default function Main(){
@@ -29,6 +27,7 @@ export default function Main(){
                 ...item,
                 quantity: quantity,
                 isInStock: quantity > 0,
+                lastUpdated: new Date().toLocaleString()
               }
             : item
         ),
@@ -53,15 +52,22 @@ export default function Main(){
 
 
   return (
-    
+    <>
+      <h1>Chambers Bay Whole Foods</h1>
     <Row xs={0} md={1} className="g-4">
    
       {Array.from({ length: 1 }).map((_, idx) => (
         <Col>
         {alertMessage && (
-          <Alert variant="success" show={true}>
-            {alertMessage}
-          </Alert>
+          <ToastContainer className="p-3 position-fixed" position="top-end">
+          <Toast  bg = "Success" variant="success" show={true} >
+          <Toast.Header>
+          <strong className="me-auto">OJ Update</strong>
+          
+          </Toast.Header>
+          <Toast.Body>{alertMessage}</Toast.Body>
+          </Toast>
+          </ToastContainer>
         )}
     {productsToRead&&
       productsToRead.map((product) => {
@@ -74,13 +80,15 @@ export default function Main(){
         price ={product.price}
         quantity = {product.quantity} 
         updateQuantity = {onChangeHandler}
+        lastUpdated = {product.lastUpdated}
         />
     })}
     </Col>
     ))}
     </Row>
-    
+    </>
   )
+  
 };
 
 

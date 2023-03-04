@@ -1,5 +1,5 @@
 
-import {Col, Card, Button,Form, InputGroup} from 'react-bootstrap';
+import {Col, Card, Button,Form, InputGroup,Fade} from 'react-bootstrap';
 import "./ojCard.styles.css";
 import Oj0 from '../../assets/Oj-1.jpg';
 import Oj1 from '../../assets/Oj-2.jpg';
@@ -10,11 +10,12 @@ import React from 'react';
 import { useState} from "react"
 
 
-export default function OjCard({id,isInStock,name,price,quantity, updateQuantity}){
+export default function OjCard({id,isInStock,name,price,quantity, updateQuantity,lastUpdated}){
     
     const [amount, setAmount] = useState(quantity);
     const images = ["placeholder",Oj0, Oj1, Oj2];
-    const [lastUpdated, setLastUpdated] = useState(new Date().toLocaleString());
+    // const [lastUpdated, setLastUpdated] = useState(new Date().toLocaleString());
+    
 
     const changeQuantity = (event) =>{
         setAmount(event.target.value);
@@ -22,27 +23,30 @@ export default function OjCard({id,isInStock,name,price,quantity, updateQuantity
 
     const handleClick = () => {
         updateQuantity(id, amount);
-        setLastUpdated(new Date().toLocaleString()); 
+        
       };
 
     
     return(
         
-        <Card key={id} className="oj-card-container">
+        <Card key={id} className="mx-auto oj-card-container">
         <Card.Body>
-          <div className="row">
-            <div className="col-sm-4">
-              <Card.Img  variant="top" src={images[id]} className ="oj-img"/>
+        <div className="d-flex align-items-center">
+            <div>
+              <Card.Img variant="top" src={images[id]} className="oj-img img-fluid" />
             </div>
-            <div className="col-sm-7">
+            <div className="oj-card-data">
               <Card.Title className="oj-title">{name}</Card.Title>
-              
               <div className="oj-info">
                 <Card.Text>Price: {price}</Card.Text>
-                <Card.Text>Availability: {isInStock ? 'In Stock' : "Not In Stock"}</Card.Text>
-                <Card.Text>Stock Amount: {quantity}</Card.Text>  
+    
+                <div>
+                <Card.Text>Availability: {isInStock ? 'In Stock' : 'Not In Stock'}</Card.Text>
+                <Card.Text>Stock Amount: {quantity}</Card.Text>
+                </div>
+                
               </div>
-                <br/>
+              <br />
               <Col className="oj-update">
                 <InputGroup className="mb-3">
                   <Form.Select
@@ -70,6 +74,7 @@ export default function OjCard({id,isInStock,name,price,quantity, updateQuantity
           </div>
         </Card.Body>
       </Card>
+      
       
 
     )

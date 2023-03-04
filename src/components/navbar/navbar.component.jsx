@@ -11,7 +11,7 @@ export default function NavBar(){
               <Navbar.Brand href="#home">DoesWholeFoodsHaveOj.com</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Info</Nav.Link>
+               
               </Nav>
             </Container>
           </Navbar>
