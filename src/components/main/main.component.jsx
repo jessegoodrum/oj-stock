@@ -16,7 +16,7 @@ export default function Main(){
   const [products, setProducts] = useState([{ items: [] }]);
   const { items: productsToRead } = products[0];
   const [alertMessage, setAlertMessage] = useState('');
-
+ 
 
   const onChangeHandler = (id, quantity) => {
   const updatedProducts = products.map((product) => {
@@ -42,6 +42,7 @@ export default function Main(){
     setTimeout(() => {
       setAlertMessage('');
     }, 3000);
+    
 };
 
 
@@ -53,7 +54,7 @@ export default function Main(){
 
   return (
     
-    <Row xs={0} md={2} className="g-4">
+    <Row xs={0} md={1} className="g-4">
    
       {Array.from({ length: 1 }).map((_, idx) => (
         <Col>
@@ -72,7 +73,8 @@ export default function Main(){
         name = {product.name}
         price ={product.price}
         quantity = {product.quantity} 
-        updateQuantity = {onChangeHandler}/>
+        updateQuantity = {onChangeHandler}
+        />
     })}
     </Col>
     ))}
