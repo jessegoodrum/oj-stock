@@ -8,7 +8,7 @@ export default function NavBar(){
         <>
           <Navbar bg="warning" variant="dark">
             <Container>
-              <Navbar.Brand href="#home">DoesWholeFoodsHaveOj.com</Navbar.Brand>
+              <Navbar.Brand href="#home">WholeFoodsOJ.com</Navbar.Brand>
               <Nav className="me-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
                

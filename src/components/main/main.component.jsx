@@ -6,6 +6,7 @@ import { addCollectionAndDocuments } from '../../firebase-utils/firebase.utils';
 import OjCard from '../ojCard/ojCard.component';
 import Alert from 'react-bootstrap/Alert';
 import { Row,Col,Toast,ToastContainer } from 'react-bootstrap';
+import './main.styles.css'
 
 
 export default function Main(){
@@ -53,7 +54,7 @@ export default function Main(){
 
   return (
     <>
-      <h1>Chambers Bay Whole Foods</h1>
+      <h1 className='ojheader'>Chambers Bay Whole Foods</h1>
     <Row xs={0} md={1} className="g-4">
    
       {Array.from({ length: 1 }).map((_, idx) => (
