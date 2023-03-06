@@ -4,3 +4,9 @@
     justify-content: center;
     margin: auto;
 }
+
+.paypal-heading{
+    display: flex;
+    justify-content: center;
+    margin: 1em;
+}

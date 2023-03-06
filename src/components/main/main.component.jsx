@@ -4,9 +4,10 @@ import React from 'react';
 import { ProductsContext} from '../../contexts/oj.context';
 import { addCollectionAndDocuments } from '../../firebase-utils/firebase.utils';
 import OjCard from '../ojCard/ojCard.component';
-import Alert from 'react-bootstrap/Alert';
+import PayPal from '../paypal/paypal.component';
 import { Row,Col,Toast,ToastContainer } from 'react-bootstrap';
 import './main.styles.css'
+
 
 
 export default function Main(){
@@ -87,6 +88,12 @@ export default function Main(){
     </Col>
     ))}
     </Row>
+
+      <h1 className='paypal-heading'>Enjoy the app? Buy me a coffee!</h1>
+      <PayPal />
+
+
+
     </>
   )
   

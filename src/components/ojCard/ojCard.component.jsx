@@ -1,5 +1,5 @@
 
-import {Col, Card, Button,Form, InputGroup,Fade} from 'react-bootstrap';
+import {Col, Card, Button,Form, InputGroup} from 'react-bootstrap';
 import "./ojCard.styles.css";
 import Oj0 from '../../assets/Oj-1.jpg';
 import Oj1 from '../../assets/Oj-2.jpg';
