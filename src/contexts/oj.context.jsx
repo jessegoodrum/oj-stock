@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { addCollectionAndDocuments } from '../firebase-utils/firebase.utils';
+// import { addCollectionAndDocuments } from '../firebase-utils/firebase.utils';
 import {getCategoriesAndDocuments} from '../firebase-utils/firebase.utils';
-import OJ_DATA from '../ojData.js';
+// import OJ_DATA from '../ojData.js';
 
 export const ProductsContext = createContext({
     products: []

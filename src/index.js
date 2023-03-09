@@ -4,15 +4,23 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ProductsProvider } from './contexts/oj.context';
+import { BrowserRouter } from 'react-router-dom';
+import ThemeProvider from 'react-bootstrap/ThemeProvider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
   <React.StrictMode>
-  <ProductsProvider>
-    <App />
-  </ProductsProvider>
+    <BrowserRouter>
+      <ThemeProvider
+          breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+          minBreakpoint="xxs">
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
   
 );

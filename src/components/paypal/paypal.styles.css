@@ -3,3 +3,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.paypal-tip-button{
+    margin: .5vw;
+}

@@ -1,58 +1,73 @@
-// import React, { useState } from 'react';
-import './paypal.styles.css'
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+// import React, { useState, useEffect } from 'react';
+// import './paypal.styles.css'
+// import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+// import { Button } from 'react-bootstrap';
 
-const PayPal = () => {
-    const [{  isPending }] = usePayPalScriptReducer();
-    // const [currency, setCurrency] = useState(options.currency);
+// const PayPal = ({currency}) => {const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
-    // const onCurrencyChange = ({ target: { value } }) => {
-    //     setCurrency(value);
-    //     dispatch({
-    //         type: "resetOptions",
-    //         value: {
-    //             ...options,
-    //             currency: value,
-    //         },
-    //     });
-    // }
+// const [tip, setTip] = useState("1.00")
 
-    const onCreateOrder = (data,actions) => {
-        return actions.order.create({
-            purchase_units: [
-                {
-                    amount: {
-                        value: "5.00",
-                    },
-                },
-            ],
-        });
-    }
+// useEffect(() => {
+//     dispatch({
+//         type: "resetOptions",
+//         value: {
+//             ...options,
+//             currency: currency,
+//         },
+//     });
+// }, [currency]);
 
-    const onApproveOrder = (data,actions) => {
-        return actions.order.capture().then((details) => {
-            const name = details.payer.name.given_name;
-            alert(`Transaction completed by ${name}`);
-        });
-    }
+// const onChangeHandler = (event) =>{
+//    const tip = event.target.value;
+//     setTip(tip);
+// }
 
-    return (
-        <div className="checkout">
-        
-        
-        
-            {isPending ? <p>LOADING...</p> : (
-                <div>
-                    
-                    <PayPalButtons 
-                        style={{ layout: "vertical" }}
-                        createOrder={(data, actions) => onCreateOrder(data, actions)}
-                        onApprove={(data, actions) => onApproveOrder(data, actions)}
-                    />
-                </div>
-            )}
-        </div>
-    );
-}
 
-export default PayPal;
+//  return (
+
+//     <>
+//     <input type="string" onChange={onChangeHandler} /> 
+//     <PayPalButtons
+//     fundingSource="paypal"
+//     style={{"layout":"vertical","label":"donate"}}
+//     disabled={false}
+//     createOrder={(data, actions) => {
+//         return actions.order
+//             .create({
+//                 purchase_units: [
+//                     {
+//                         amount: {
+//                             value: "2",
+//                             breakdown: {
+//                                 item_total: {
+//                                     currency_code: "USD",
+//                                     value: tip,
+//                                 },
+//                             },
+//                         },
+//                         items: [
+//                             {
+//                                 name: "donation",
+//                                 quantity: "1",
+//                                 unit_amount: {
+//                                     currency_code: "USD",
+//                                     value: tip,
+//                                 },
+//                                 category: "DONATION",
+//                             },
+//                         ],
+//                     },
+//                 ],
+//             })
+//             .then((orderId) => {
+//                 // Your code here after create the donation
+//                 return orderId;
+//             });
+//     }}
+// />
+// </>
+//  );
+
+// } 
+
+// export default PayPal;

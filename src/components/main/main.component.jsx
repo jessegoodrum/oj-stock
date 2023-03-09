@@ -4,8 +4,7 @@ import React from 'react';
 import { ProductsContext} from '../../contexts/oj.context';
 import { addCollectionAndDocuments } from '../../firebase-utils/firebase.utils';
 import OjCard from '../ojCard/ojCard.component';
-import PayPal from '../paypal/paypal.component';
-import { Row,Col,Toast,ToastContainer } from 'react-bootstrap';
+import { Row,Col,Toast,ToastContainer, Button, ModalFooter } from 'react-bootstrap';
 import './main.styles.css'
 
 
@@ -88,9 +87,12 @@ export default function Main(){
     </Col>
     ))}
     </Row>
-
-      <h1 className='paypal-heading'>Enjoy the app? Buy me a coffee!</h1>
-      <PayPal />
+      <ModalFooter className='donate'>
+      <h1 className='donate-heading'>Enjoy the app? Buy me a coffee! </h1>
+      <Button className='donate-button' size ='lg' onClick={() => window.open("https://www.paypal.com/donate/?hosted_button_id=KH8CWFCSQTLPL", '_blank')} >
+      Donate Here!
+      </Button>
+      </ModalFooter>
 
 
 

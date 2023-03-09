@@ -5,8 +5,12 @@
     margin: auto;
 }
 
-.paypal-heading{
+.donate{
     display: flex;
     justify-content: center;
     margin: 1em;
+}
+
+.donate-heading{
+    margin: 1vw;
 }
