@@ -1,17 +1,20 @@
 
 import {Col, Card, Button,Form, InputGroup} from 'react-bootstrap';
+import { UserContext } from '../../contexts/user.context';
 import "./ojCard.styles.css";
 import Oj0 from '../../assets/Oj-1.jpg';
 import Oj1 from '../../assets/Oj-2.jpg';
 import Oj2 from '../../assets/Oj-3.jpg';
-import React from 'react';
+import {React, useContext} from 'react';
 
 
 import { useState} from "react"
 
 
 export default function OjCard({id,isInStock,name,price,quantity, updateQuantity,lastUpdated}){
-    
+
+    const {currentUser} = useContext(UserContext);
+
     const [amount, setAmount] = useState(quantity);
     const images = ["placeholder",Oj0, Oj1, Oj2];
     // const [lastUpdated, setLastUpdated] = useState(new Date().toLocaleString());
@@ -44,6 +47,10 @@ export default function OjCard({id,isInStock,name,price,quantity, updateQuantity
               </div>
             </div>
             <br />
+
+
+            {currentUser ?  
+
             <Col className="oj-update">
               <InputGroup className="mb-3">
                 <Form.Select
@@ -66,6 +73,13 @@ export default function OjCard({id,isInStock,name,price,quantity, updateQuantity
                 </Button>
               </InputGroup>
             </Col>
+
+            : <h3>Please Login To Update Stock</h3>}
+
+
+
+
+
             <Card.Text>Last Updated: {lastUpdated}</Card.Text>
           </div>
         </Card.Body>

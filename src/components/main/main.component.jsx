@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {useContext,useEffect,useState } from 'react';
 import React from 'react';
 import { ProductsContext} from '../../contexts/oj.context';
+import { UserContext } from '../../contexts/user.context';
 import { addCollectionAndDocuments } from '../../firebase-utils/firebase.utils';
 import OjCard from '../ojCard/ojCard.component';
 import { Row,Col,Toast,ToastContainer, Button, ModalFooter } from 'react-bootstrap';
@@ -10,6 +11,8 @@ import './main.styles.css'
 
 
 export default function Main(){
+  
+  const {currentUser} = useContext(UserContext);
   const oj = 'oj'
   const {productsMap} = useContext(ProductsContext);
   const [products, setProducts] = useState([{ items: [] }]);

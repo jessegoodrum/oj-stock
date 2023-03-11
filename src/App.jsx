@@ -3,9 +3,10 @@ import './App.css';
 import Main from './components/main/main.component';
 import NavBar from './components/navbar/navbar.component';
 import Info from './components/info/info.components';
-import ThemeProvider from 'react-bootstrap/ThemeProvider';
+
 // import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Routes, Route} from 'react-router-dom'
+import Authentication from './components/authentication/authentication.component';
 
 
 // const initialOptions = {
@@ -24,6 +25,7 @@ function App() {
       <Route path='/' element ={<NavBar/>} >
       <Route path='/' index element= { <Main />} />
       <Route path='info'  element= { <Info />} />
+      <Route path='auth' element = {<Authentication />}/>
       </Route>
       
 

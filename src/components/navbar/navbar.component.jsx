@@ -1,12 +1,19 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import React from 'react';
-import { Outlet, Link } from 'react-router-dom';
-import './navbar.styles.css';
 import { LinkContainer } from 'react-router-bootstrap';
 
+import {React, useContext} from 'react';
+import { Outlet } from 'react-router-dom';
+import './navbar.styles.css';
+
+import { UserContext } from '../../contexts/user.context';
+import { signOutUser } from '../../firebase-utils/firebase.utils';
+
+
 export default function NavBar(){
+
+  const {currentUser} = useContext(UserContext);
 
     return (
         <>
@@ -19,6 +26,9 @@ export default function NavBar(){
                   </LinkContainer>
                   <LinkContainer to='/info'>
                     <Nav.Link to='/info'>Info</Nav.Link>
+                  </LinkContainer>
+                  <LinkContainer to='/auth'>
+                  {currentUser ? (<Nav.Link as='span' onClick={signOutUser}>Logout</Nav.Link>) : (<Nav.Link to='/auth' >Login</Nav.Link>)}
                   </LinkContainer>
               </Nav>
             </Container>
