@@ -3,6 +3,7 @@ import './App.css';
 import Main from './components/main/main.component';
 import NavBar from './components/navbar/navbar.component';
 import Info from './components/info/info.components';
+import AddLocation from './components/addlocation/add-location.component';
 
 // import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Routes, Route} from 'react-router-dom'
@@ -26,6 +27,7 @@ function App() {
       <Route path='/' index element= { <Main />} />
       <Route path='info'  element= { <Info />} />
       <Route path='auth' element = {<Authentication />}/>
+      <Route path='addlocation' element = {<AddLocation/>}/>
       </Route>
       
 

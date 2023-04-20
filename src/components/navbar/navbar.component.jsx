@@ -30,6 +30,9 @@ export default function NavBar(){
                   <LinkContainer to='/auth'>
                   {currentUser ? (<Nav.Link as='span' onClick={signOutUser}>Logout</Nav.Link>) : (<Nav.Link to='/auth' >Login</Nav.Link>)}
                   </LinkContainer>
+                  <LinkContainer to='/addlocation'>
+                    <Nav.Link to='/addlocation'>Add Location</Nav.Link>
+                  </LinkContainer>
               </Nav>
             </Container>
           </Navbar>
