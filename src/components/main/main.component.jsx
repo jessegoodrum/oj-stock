@@ -57,7 +57,7 @@ export default function Main(){
 
   return (
     <>
-      <h1 className='ojheader'>Chambers Bay Whole Foods</h1>
+      <h1 className='ojheader'>Whole Foods Oj</h1>
     <Row xs={0} md={1} className="g-4">
    
       {Array.from({ length: 1 }).map((_, idx) => (
