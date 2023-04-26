@@ -8,7 +8,7 @@ import { auth, firestore } from '../../firebase-utils/firebase.utils';
 import { updateDoc, doc } from 'firebase/firestore';
 
 import OjCard from '../ojCard/ojCard.component';
-import { Row, Col, Toast, ToastContainer, Button, ModalFooter } from 'react-bootstrap';
+import { Row, Col, Toast, ToastContainer, Button, ModalFooter,Modal } from 'react-bootstrap';
 import './main.styles.css'
 
 export default function Main() {
@@ -20,6 +20,10 @@ export default function Main() {
   const [alertMessage, setAlertMessage] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [locations, setLocations] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const onChangeHandler = async (id, quantity) => {
     const updatedProducts = products.map((product) => {
@@ -75,20 +79,41 @@ export default function Main() {
 
   return (
     <>
-      <h1 className="ojheader">Whole Foods Oj</h1>
-      <div className="location-dropdown">
-        <h2>Select Location</h2>
+      <h1 className="ojheader">{selectedLocation}</h1>
+      <div  className='location-modal d-flex flex-column align-items-center link'>
+
+      <Button variant="success"  onClick={handleShow}>
+        Select Location
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Select Location</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>  
         <select
-          value={selectedLocation}
-          onChange={(e) => setSelectedLocation(e.target.value)}
-        >
-          <option value="">Select a location</option>
-          {locations.map((location) => (
-            <option key={location} value={location}>
-              {location}
-            </option>
-          ))}
-        </select>
+        value={selectedLocation}
+        onChange={(e) => setSelectedLocation(e.target.value)}>
+        <option 
+        value="">Select a location</option>
+        {locations.map((location) => (
+          <option key={location} value={location}>
+            {location}
+          </option>
+        ))}
+      </select>
+      </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+
+        
+      
       </div>
       <Row xs={0} md={1} className="g-4">
         {Array.from({ length: 1 }).map((_, idx) => (

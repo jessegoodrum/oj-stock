@@ -1,6 +1,6 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+// import Container from 'react-bootstrap/Container';
+// import Nav from 'react-bootstrap/Nav';
+import {Navbar, Container, Nav} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import {React, useContext} from 'react';
@@ -16,26 +16,37 @@ export default function NavBar(){
   const {currentUser} = useContext(UserContext);
 
     return (
-        <>
-          <Navbar  bg="warning" variant="dark">
-            <Container className='link'> 
-              <LinkContainer  to='/'><Navbar.Brand>WholeFoodsOJ.com</Navbar.Brand></LinkContainer>
+          <>
+          <Navbar bg="warning" variant="dark" expand="md">
+            <Container>
+              <LinkContainer to="/">
+                <Navbar.Brand>WholeFoodsOJ.com</Navbar.Brand>
+              </LinkContainer>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                  <LinkContainer to='/'>
+                  <LinkContainer to="/">
                     <Nav.Link>Home</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to='/info'>
-                    <Nav.Link to='/info'>Info</Nav.Link>
+                  <LinkContainer to="/info">
+                    <Nav.Link>Info</Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to='/auth'>
-                  {currentUser ? (<Nav.Link as='span' onClick={signOutUser}>Logout</Nav.Link>) : (<Nav.Link to='/auth' >Login</Nav.Link>)}
+                  <LinkContainer to="/auth">
+                    {currentUser ? (
+                      <Nav.Link as="span" onClick={signOutUser}>
+                        Logout
+                      </Nav.Link>
+                    ) : (
+                      <Nav.Link>Login</Nav.Link>
+                    )}
                   </LinkContainer>
-                  <LinkContainer to='/addlocation'>
-                    <Nav.Link to='/addlocation'>Add Location</Nav.Link>
+                  <LinkContainer to="/addlocation">
+                    <Nav.Link>Add Location</Nav.Link>
                   </LinkContainer>
-              </Nav>
+                </Nav>
+              </Navbar.Collapse>
             </Container>
           </Navbar>
-          <Outlet/>
-          </>
+        <Outlet />
+        </>
           )}
