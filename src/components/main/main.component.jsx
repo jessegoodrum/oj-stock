@@ -21,9 +21,13 @@ export default function Main() {
   const [selectedLocation, setSelectedLocation] = useState('');
   const [locations, setLocations] = useState([]);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(true);
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleLoading = (status) => setLoading(status);
+  
 
   const onChangeHandler = async (id, quantity) => {
     const updatedProducts = products.map((product) => {
@@ -58,9 +62,11 @@ export default function Main() {
   
 
   const fetchProducts = async () => {
+    handleLoading(true);
     const categoriesAndDocuments = await getCategoriesAndDocuments();
     setProductsMap(categoriesAndDocuments);
     setLocations(Object.keys(categoriesAndDocuments));
+    handleLoading(false);
   };
 
   useEffect(() => {
@@ -79,10 +85,16 @@ export default function Main() {
 
   return (
     <>
+    {loading ? (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+        <div className="loader"></div>
+      </div>
+    ) : (
+    <>
       <h1 className="ojheader">{selectedLocation}</h1>
       <div  className='location-modal d-flex flex-column align-items-center link'>
 
-      <Button variant="success"  onClick={handleShow}>
+      <Button variant="success"  onClick={handleShow} className='select-location'>
         Select Location
       </Button>
 
@@ -108,11 +120,7 @@ export default function Main() {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
-
-
-
-        
+      </Modal> 
       
       </div>
       <Row xs={0} md={1} className="g-4">
@@ -163,6 +171,8 @@ export default function Main() {
         Donate Here!
       </Button>
     </ModalFooter>
+  </>
+  )}
   </>
 );
   

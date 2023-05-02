@@ -41,7 +41,14 @@ export default function NavBar(){
                     )}
                   </LinkContainer>
                   <LinkContainer to="/addlocation">
-                    <Nav.Link>Add Location</Nav.Link>
+                  {currentUser ? (
+                    <Nav.Link as="span">
+                      Add Location
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link></Nav.Link>
+                  )}
+                    
                   </LinkContainer>
                 </Nav>
               </Navbar.Collapse>
