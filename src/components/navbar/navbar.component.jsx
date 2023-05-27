@@ -7,6 +7,8 @@ import {React, useContext} from 'react';
 import { Outlet } from 'react-router-dom';
 import './navbar.styles.css';
 
+import WFOJ from '../../assets/WholeFoodsOjOrange.png';
+
 import { UserContext } from '../../contexts/user.context';
 import { signOutUser } from '../../firebase-utils/firebase.utils';
 
@@ -19,9 +21,13 @@ export default function NavBar(){
           <>
           <Navbar bg="warning" variant="dark" expand="md">
             <Container>
-              <LinkContainer to="/">
-                <Navbar.Brand>WholeFoodsOJ.com</Navbar.Brand>
-              </LinkContainer>
+              
+              <Navbar.Brand>
+              
+              <img src={WFOJ} style={{width:100, marginLeft: 20, marginRight:10}} />
+              Whole Foods Oj 
+            </Navbar.Brand>
+              
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
