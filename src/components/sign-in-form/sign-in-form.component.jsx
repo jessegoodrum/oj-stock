@@ -59,11 +59,11 @@ export default function SignInForm(){
           }
         };
 
-          // if(error.code === "auth/wrong-password" ){
-          //   alert('incorrect password');
-          // }else if(error.code === 'auth/user-not-found'){
-          //     console.log("incorrect email")
-          //   }
+        //   if(error.code === "auth/wrong-password" ){
+        //     alert('incorrect password');
+        //   }else if(error.code === 'auth/user-not-found'){
+        //       console.log("incorrect email")
+        //     }
           
         // }
 
