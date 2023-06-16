@@ -1,7 +1,7 @@
-import {useState} from 'react'
-
+import { useState, useEffect, useContext } from 'react';
 import { Form } from 'react-router-dom';
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../firebase-utils/firebase.utils.js';
+import { ProductsContext } from '../../contexts/oj.context';
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, getCategoriesAndDocuments } from '../../firebase-utils/firebase.utils.js';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import './sign-up-form.styles.scss'
@@ -9,13 +9,17 @@ const defaultFormFields = {
     displayName: '',
     email: '',
     passowrd: '',
-    confirmPassord: ''
+    confirmPassord: '',
+    homeLocation: '',
+    profileType: ''
 }
 
 export default function SignUpForm(){
     
+    const [locations, setLocations] = useState([]);
+    const [selectedLocation, setSelectedLocation] = useState('');
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {displayName, email, password, confirmPassword} = formFields;
+    const {displayName, email, password, confirmPassword, homeLocation, profileType} = formFields;
 
     const handleChange = (event) => {
         const {name,value} = event.target; 
@@ -26,6 +30,12 @@ export default function SignUpForm(){
     const resetFormFields = () => {
         setFormFields(defaultFormFields)
     }
+
+    const fetchProducts = async () => {
+      const categoriesAndDocuments = await getCategoriesAndDocuments();
+      setLocations(Object.keys(categoriesAndDocuments));
+      
+    };
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -51,6 +61,13 @@ export default function SignUpForm(){
         
 
         }
+
+
+
+        useEffect(() => {
+          fetchProducts();
+        }, []);
+    
 
        
     
@@ -95,6 +112,28 @@ export default function SignUpForm(){
                   name='confirmPassword'
                   value={confirmPassword}
                 />
+
+                <select
+                label='Home Location'
+                name='homeLocation'
+                value={selectedLocation}
+                required
+                onChange={handleChange}>
+                  <option 
+                  value="">Select a location</option>
+                  <option value="">--Not Listed--</option>
+                  {locations.map((location) => (
+                    <option key={location} name='homeLocation' value={location}>
+                      {location}
+                  </option>
+
+                  //left off here selector is just displaying broadway. need to get selector to choose location and submit as homeLocation
+
+
+
+                  ))}
+                </select>
+
                 <Button type='submit'>Sign Up</Button>
               </form>
             </div>
